@@ -1,5 +1,18 @@
 [
   {
+    "title": "ひとひら、全国9都市ツアー開催",
+    "summary": "アルバム『円』を記念し、11月から全国9都市を巡るツアー〈hitohira en tour 2025-2026〉を開催。新たな音楽の旅が始まります。",
+    "url": "https://ototoy.jp/news/125679",
+    "imageUrl": "",
+    "source": "OTOTOY",
+    "date": "2025-11-30",
+    "category": "Tour",
+    "importance": 4.5,
+    "id": "54bf3f4a-2086-4106-89ce-8c283a6cffbc",
+    "artist": "ひとひら",
+    "fetchedAt": "2025-11-24T02:28:19.750Z"
+  },
+  {
     "title": "北米ツアー2025が開幕",
     "summary": "Inhalerが『Open Wide』を引っ提げた北米ツアーをスタート。ニューヨーク州ハンティントンでの公演を皮切りに、ブルックリン、フィラデルフィア、オースティンなど、東海岸および南部都市を巡ります。",
     "url": "https://www.udiscovermusic.com/news/inhaler-2025-north-american-tour-dates/",
@@ -24,6 +37,58 @@
     "id": "e77f78bd-1211-40f0-90a6-c3e9b0698306",
     "artist": "Inhaler",
     "fetchedAt": "2025-11-24T01:58:47.186Z"
+  },
+  {
+    "title": "Les Enfants Brillants、OffWeek 2025出演",
+    "summary": "Les Enfants Brillantsが、バルセロナで開催されるOffWeek 2025に出演。6月10日から15日まで、クラブカルチャーを city centerにもたらします。",
+    "url": "https://xceed.me/blog/en/output-les-enfants-brillants-offweek-2025-xceed/",
+    "imageUrl": "",
+    "source": "xceed.me",
+    "date": "2025-11-26",
+    "category": "Tour",
+    "importance": 3,
+    "id": "d169cb13-0e2c-4d40-9a65-405ba0434b16",
+    "artist": "Enfants",
+    "fetchedAt": "2025-11-24T02:27:49.251Z"
+  },
+  {
+    "title": "Les Enfants Terribles、新曲リリース",
+    "summary": "フランスのLes Enfants TerriblesがMidnight Recordsから新曲とアルバムをリリース。インタビューでは、制作プロセスや最新作について語っています。",
+    "url": "http://www.cloudberryrecords.com/blog/?p=5682",
+    "imageUrl": "",
+    "source": "cloudberryrecords.com",
+    "date": "2025-11-26",
+    "category": "Release",
+    "importance": 3,
+    "id": "e5d0bd11-0cdf-4473-a5a0-1e717495354c",
+    "artist": "Enfants",
+    "fetchedAt": "2025-11-24T02:27:49.251Z"
+  },
+  {
+    "title": "The Prestige、新曲「Enfants Terribles」発表",
+    "summary": "The Prestigeが新曲「Enfants Terribles」をリリース。物質主義が人間関係をどのように定義するかを問いかける内容。11月に新しいアルバムを準備中。",
+    "url": "https://www.clickrollboom.co.uk/news/the-prestige-release-epic-new-track-enfants-terribles-questioning-how-materialism-sometimes-defines-relationships",
+    "imageUrl": "",
+    "source": "clickrollboom.co.uk",
+    "date": "2025-11-26",
+    "category": "Release",
+    "importance": 3,
+    "id": "7ffa2c62-f636-462c-bcb9-6de6e212ccdd",
+    "artist": "Enfants",
+    "fetchedAt": "2025-11-24T02:27:49.251Z"
+  },
+  {
+    "title": "Yaniss Odua & Danakil、「Enfants Du Monde」",
+    "summary": "Yaniss OduaとDanakilが新曲「Enfants Du Monde」をリリース。団結と寛容を促進するメッセージが込められています。初の公式コラボレーション。",
+    "url": "https://bacomusic.fr/en/yaniss-odua-et-danakil-sunissent-sur-enfants-du-monde/",
+    "imageUrl": "",
+    "source": "bacomusic.fr",
+    "date": "2025-11-26",
+    "category": "Release",
+    "importance": 3,
+    "id": "971656a3-4b12-489c-b536-8d14b56b9fc1",
+    "artist": "Enfants",
+    "fetchedAt": "2025-11-24T02:27:49.251Z"
   },
   {
     "title": "Enfants、新曲「星の下」を配信",
@@ -65,6 +130,19 @@
     "fetchedAt": "2025-11-24T01:58:30.683Z"
   },
   {
+    "title": "Gros Enfant Mort、新曲MV公開",
+    "summary": "フランスのポストハードコアバンドGros Enfant Mortが新曲「Merci les cendres」のMVを公開。アルバム「Le Sang des Pierres」は2026年1月23日リリース。",
+    "url": "https://metalshockfinland.com/2025/11/22/gros-enfant-mort-unleash-video-for-new-single-merci-les-cendres/",
+    "imageUrl": "",
+    "source": "metalshockfinland.com",
+    "date": "2025-11-22",
+    "category": "Release",
+    "importance": 3.5,
+    "id": "60c49b67-6a5d-416a-bc9e-dae03969ac01",
+    "artist": "Enfants",
+    "fetchedAt": "2025-11-24T02:27:49.251Z"
+  },
+  {
     "title": "Down、10年ぶりの新アルバムをレコーディング中",
     "summary": "アメリカのヘヴィメタルバンドDownが、2014年以来となるニューアルバムをレコーディング中。ギターのKirk Windsteinによれば、レコーディングは中盤を過ぎ、サウンドはデビューアルバム『NOLA』を彷彿とさせるという。",
     "url": "https://metalinjection.net/upcoming-releases/new-down-is-coming-in-2025",
@@ -89,6 +167,32 @@
     "id": "9854d1c7-5353-4e78-a300-a87bcbe5c05f",
     "artist": "downt",
     "fetchedAt": "2025-11-24T01:55:22.747Z"
+  },
+  {
+    "title": "DOWN、待望のニューアルバム制作中",
+    "summary": "ヘヴィメタルバンドDOWNが、長らく待たれていたニューアルバムのレコーディングを進めています。10曲の新曲が準備されており、2025年後半から2026年初頭のリリースが予定されています。",
+    "url": "https://metalinjection.net/news/kirk-windstein-talks-progress-of-downs-upcoming-album",
+    "imageUrl": "",
+    "source": "Metal Injection",
+    "date": "2025-11-21",
+    "category": "Release",
+    "importance": 4.5,
+    "id": "692d1970-d9b7-4f05-b5e8-e755c311ed3b",
+    "artist": "downt",
+    "fetchedAt": "2025-11-24T02:28:42.713Z"
+  },
+  {
+    "title": "DOWN、新アルバムについてメンバーが語る",
+    "summary": "DOWNのメンバー、カーク・ワインスタインとジミー・バウアーが、ニューアルバムの進捗状況や25周年記念公演への意気込みを語るインタビューが公開されました。",
+    "url": "https://blabbermouth.net/news/down-is-past-the-middle-point-of-recording-new-album",
+    "imageUrl": "",
+    "source": "Blabbermouth",
+    "date": "2025-11-21",
+    "category": "Interview",
+    "importance": 3.5,
+    "id": "3f52505b-7112-4309-8435-5d49721fec00",
+    "artist": "downt",
+    "fetchedAt": "2025-11-24T02:28:42.713Z"
   },
   {
     "title": "ひとひら、全国9都市ツアー開催",
@@ -193,6 +297,45 @@
     "fetchedAt": "2025-11-24T01:27:57.788Z"
   },
   {
+    "title": "CNBLUE、日本15thシングルがオリコン1位",
+    "summary": "CNBLUEの15枚目の日本シングル「Shintouya」が11月5日にリリースされ、オリコンデイリーシングルランキングで1位を獲得。日本での根強い人気を証明しました。",
+    "url": "https://www.mk.co.kr/en/musics/11461284",
+    "imageUrl": "",
+    "source": "mk.co.kr",
+    "date": "2025-11-20",
+    "category": "Release",
+    "importance": 4.5,
+    "id": "73848094-843e-40d9-89b8-8f7ed724b76e",
+    "artist": "CNBLUE JAPAN OFFICIAL",
+    "fetchedAt": "2025-11-24T02:29:06.733Z"
+  },
+  {
+    "title": "CNBLUE、秋の日本ライブツアー開催中",
+    "summary": "CNBLUEは「2025 CNBLUE AUTUMN LIVE IN JAPAN ~ SHINTOUYA ~」を開催中。11月15-16日に神戸、23-24日に幕張で公演。12月30日には「Countdown Fantasy 2025-2026」に出演予定です。",
+    "url": "https://www.wowkorea.live/topic/read/149901.html",
+    "imageUrl": "",
+    "source": "wowkorea.live",
+    "date": "2025-11-20",
+    "category": "Tour",
+    "importance": 4.2,
+    "id": "cf3250b6-39b7-400f-87e6-258552f28887",
+    "artist": "CNBLUE JAPAN OFFICIAL",
+    "fetchedAt": "2025-11-24T02:29:06.733Z"
+  },
+  {
+    "title": "CNBLUE、ツアーとアルバムについて語る",
+    "summary": "CNBLUEがツアーとアルバムプロジェクトについてインタビューに応じました。ファンとの再会や、活動休止後の新曲制作への意欲を語っています。",
+    "url": "https://www.youtube.com/watch?v=2ibCsO8DFiE",
+    "imageUrl": "",
+    "source": "youtube.com",
+    "date": "2025-11-20",
+    "category": "Interview",
+    "importance": 3.8,
+    "id": "e4157208-d06b-4964-8ade-08b402ad73f7",
+    "artist": "CNBLUE JAPAN OFFICIAL",
+    "fetchedAt": "2025-11-24T02:29:06.733Z"
+  },
+  {
     "title": "Circle Chart、最新ランキング発表",
     "summary": "Circle Chartが11月9日から15日のランキングを発表。WOODZの「Drowning」が上位にランクイン。",
     "url": "https://www.allkpop.com/article/2025/11/circle-chart-releases-chart-rankings-for-november-9-to-november-15",
@@ -232,6 +375,19 @@
     "fetchedAt": "2025-11-24T01:57:18.909Z"
   },
   {
+    "title": "音楽ナタリーで「ひとひら」が特集",
+    "summary": "音楽ナタリーの令和オルタナ最前線で、ルサンチマン、kurayamisaka、雪国と共に「ひとひら」が注目グループとして特集されています。",
+    "url": "https://natalie.mu/music/news/648784",
+    "imageUrl": "https://imgs.search.brave.com/IvC7fDBVpJFIahojRsu3VEu-Yd56UwtD-6phLYxk6kg/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9vZ3Jl/Lm5hdGFsaWUubXUv/bWVkaWEvbmV3cy9t/dXNpYy8yMDI1LzEx/MTkvc2Vpa29fa3Yy/MDI1MTEuanBnP2lt/cG9saWN5PXR3aXR0/ZXJfY2FyZF9mYWNl/X2Nyb3A",
+    "source": "natalie.mu",
+    "date": "2025-11-19",
+    "category": "Media",
+    "importance": 3.5,
+    "id": "ca62d724-5bc8-4075-a97c-acbc5b40ab04",
+    "artist": "ひとひら",
+    "fetchedAt": "2025-11-24T02:28:19.750Z"
+  },
+  {
     "title": "WOODZ、2025年コンサート開催へ",
     "summary": "WOODZが兵役後初のソロコンサートを11月29日と30日にソウルで開催。多様な音楽性を披露し、2026年にはフルアルバムとワールドツアーも計画。",
     "url": "https://www.mk.co.kr/en/hot-issues/11471638",
@@ -258,6 +414,19 @@
     "fetchedAt": "2025-11-24T01:57:18.909Z"
   },
   {
+    "title": "年末コンサートのファン向け先行販売開始",
+    "summary": "DAY6がデビュー10周年を記念し、年末ソロコンサートのファン向け先行販売を開始。KSPO DOMEでの公演で、新たな記録を打ち立てるか。",
+    "url": "https://www.allkpop.com/article/2025/11/day6-opens-fan-pre-sale-for-year-end-solo-concert-today",
+    "imageUrl": "https://imgs.search.brave.com/dZbFqVsBO9IARRz82hNMusRAcY8yZgFZoGsHssfv34Q/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly93d3cu/YWxsa3BvcC5jb20v/dXBsb2FkLzIwMjUv/MTEvY29udGVudC8x/NzA3MTcvd2ViX2Rh/dGEvYWxsa3BvcF8x/NzYzMzgyMTQzX21h/eHJlc2RlZmF1bHQu/anBn",
+    "source": "allkpop",
+    "date": "2025-11-18",
+    "category": "Tour",
+    "importance": 4,
+    "id": "e6afca7e-6d1f-42b9-8c60-906405777ab7",
+    "artist": "DAY6",
+    "fetchedAt": "2025-11-24T02:27:30.366Z"
+  },
+  {
     "title": "年末スペシャルコンサート開催",
     "summary": "DAY6が10周年を記念し、12月にソウルKSPO Domeで年末スペシャルコンサート「The Present」を開催。チケットは完売し、ファンへの感謝を込めた特別な公演となる予定です。",
     "url": "https://www.starnewskorea.com/global/en/2025111810326946827",
@@ -282,6 +451,45 @@
     "id": "1e7f8e83-bdb9-46eb-87ad-91e12169b2b1",
     "artist": "NewDad",
     "fetchedAt": "2025-11-24T01:57:18.909Z"
+  },
+  {
+    "title": "syrup16g、30周年記念ライブをNHKホールで開催",
+    "summary": "syrup16gが30周年を記念したライブイベント「syrup16g 30th Anniversary 'Closer / Further'」を2026年3月13日、14日に東京・NHKホールにて開催。30年の軌跡を辿る特別な公演となる予定。",
+    "url": "https://lp.p.pia.jp/article/news/441248/index.html?detail=true",
+    "imageUrl": "",
+    "source": "pia.jp",
+    "date": "2025-11-17",
+    "category": "Tour",
+    "importance": 4.2,
+    "id": "01f58c20-02bb-456a-8adb-d43788d44715",
+    "artist": "syrup16g",
+    "fetchedAt": "2025-11-24T02:26:25.584Z"
+  },
+  {
+    "title": "syrup16g、ZIONとのツーマンライブを大阪で開催",
+    "summary": "syrup16gがZIONとのツーマンライブ「LIVE HOLIC vol.42」を11月13日に大阪・なんばHatchにて開催。両バンドの熱いパフォーマンスが繰り広げられた。",
+    "url": "https://zionplus.info/live-holic-vol-42_syrup16g-x-zion/",
+    "imageUrl": "",
+    "source": "zionplus.info",
+    "date": "2025-11-17",
+    "category": "Tour",
+    "importance": 3.5,
+    "id": "0f2fb9bf-1bc1-4a49-ba46-756f02af97a5",
+    "artist": "syrup16g",
+    "fetchedAt": "2025-11-24T02:26:25.584Z"
+  },
+  {
+    "title": "10周年記念コンサートチケット完売",
+    "summary": "DAY6のデビュー10周年を記念したコンサート「The Present」のチケットが完売。ファンの熱い支持を受け、特別な公演となるでしょう。",
+    "url": "https://www.kpopmap.com/day6-concert-sells-out-amidst-major-yes24-ticket-errors/",
+    "imageUrl": "https://imgs.search.brave.com/J14RlbVUOQ33PA86sG80tmh8jL5zr1Vjwmp2yvLOBKs/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9pbWcu/a3BvcG1hcC5jb20v/NzMweDAvMjAyNS8w/OS8xNzU2ODg4NTk1/LnBuZw",
+    "source": "Kpopmap",
+    "date": "2025-11-17",
+    "category": "Tour",
+    "importance": 4.2,
+    "id": "1548aae0-b3f0-4074-868c-a4b0c6cf2382",
+    "artist": "DAY6",
+    "fetchedAt": "2025-11-24T02:27:30.366Z"
   },
   {
     "title": "Young K、SBS歌謡大祭典のMCに",
@@ -323,6 +531,19 @@
     "fetchedAt": "2025-11-24T01:53:41.803Z"
   },
   {
+    "title": "韓国のフェス「Wonderlivet 2025」ヘッドライナー",
+    "summary": "BUMP OF CHICKENが韓国のフェス「Wonderlivet 2025」でヘッドライナーを務める。韓国でのパフォーマンスは17年ぶり。",
+    "url": "https://www.chosun.com/english/kpop-culture-en/2025/11/13/NHD5QDLYGJFF7B75WPOMDYAKPI/",
+    "imageUrl": "",
+    "source": "Chosun Ilbo",
+    "date": "2025-11-13",
+    "category": "Tour",
+    "importance": 3,
+    "id": "a9789c3b-71f6-4994-b1fe-8fcdc49e2263",
+    "artist": "BUMP OF CHICKEN",
+    "fetchedAt": "2025-11-24T02:31:53.315Z"
+  },
+  {
     "title": "Oaiko、新レーベル「otonami records」設立",
     "summary": "Oaikoが新レーベル「otonami records」を設立し、新たなバンド「えんどあ」と契約。ソロアーティスト、パフォーマーとしての活動から、レーベル創設者としての新たな段階へ。",
     "url": "https://avyss-magazine.com/2025/11/12/66113/",
@@ -349,6 +570,19 @@
     "fetchedAt": "2025-11-24T01:54:55.502Z"
   },
   {
+    "title": "Inhaler、最新インタビューで進化を語る",
+    "summary": "Inhalerは、最新インタビューでアルバム「Open Wide」での進化について語りました。プロデューサーのKid Harpoonの協力や、音楽的な野心の拡大について触れています。また、ファンとの再会や、UKツアーへの期待も表明しています。",
+    "url": "https://www.aol.com/entertainment/inhaler-talk-lp-touring-life-230000356.html",
+    "imageUrl": "",
+    "source": "aol.com",
+    "date": "2025-11-09",
+    "category": "Interview",
+    "importance": 3.5,
+    "id": "44ae3109-a659-4f7c-a662-f514d6e3b1ab",
+    "artist": "Inhaler",
+    "fetchedAt": "2025-11-24T02:32:19.668Z"
+  },
+  {
     "title": "10周年記念ツアー開催",
     "summary": "DAY6が10周年記念ツアー「The DECADE」を開催。香港、マニラ、クアラルンプールでの公演が決定。過去には高陽、バンコク、ホーチミンでも公演を実施し、成功を収めています。",
     "url": "https://www.starnewskorea.com/global/en/2025110314516994640",
@@ -373,6 +607,19 @@
     "id": "3beeec4e-c361-4f18-bcfe-2107cdbb70b6",
     "artist": "yeti let you notice",
     "fetchedAt": "2025-11-24T01:57:31.989Z"
+  },
+  {
+    "title": "秋夕の挨拶とカムバックの予告",
+    "summary": "ONEWEは10月5日に秋夕の挨拶動画を公開し、ニューアルバム「MAZE : AD ASTRA」のリリースを発表。ファンへのメッセージとともに、今後のコンテンツへの期待を高めた。",
+    "url": "https://www.youtube.com/watch?v=DSZQoujNLSU",
+    "imageUrl": "",
+    "source": "ONEWE YouTube",
+    "date": "2025-10-05",
+    "category": "Media",
+    "importance": 3.5,
+    "id": "da0a9a25-f691-4f63-b8b9-feaba272c1d7",
+    "artist": "원위 (ONEWE)",
+    "fetchedAt": "2025-11-24T02:31:37.640Z"
   },
   {
     "title": "最新シングルアルバム「Rules」リリース",
@@ -564,6 +811,45 @@
     "fetchedAt": "2025-11-24T01:58:12.786Z"
   },
   {
+    "title": "YouTubeライブストリーミングで新曲を披露",
+    "summary": "yeti let you noticeがYouTubeでライブストリーミングを実施。新曲を披露し、ファンと交流。10周年記念リリースに関する情報や、今後の活動について語った。積極的なファンエンゲージメントも継続中。",
+    "url": "https://www.youtube.com/watch?v=YFCL2M1u2z4",
+    "imageUrl": "",
+    "source": "yeti let you notice YouTube",
+    "date": "2024-07-26",
+    "category": "Media",
+    "importance": 3.5,
+    "id": "25464284-8441-4acd-80f8-44c9c9ebe11d",
+    "artist": "yeti let you notice",
+    "fetchedAt": "2025-11-24T02:30:46.766Z"
+  },
+  {
+    "title": "アルバム「in my mind」発売中",
+    "summary": "DOPING PANDAの3年ぶりのアルバム「in my mind」が発売中です。「Darlin' I love you」や「2043」を含む全10曲を収録。現在開催中のツアーでも披露されています。",
+    "url": "https://natalie.mu/music/news/632477",
+    "imageUrl": "",
+    "source": "natalie.mu",
+    "date": "2024-07-03",
+    "category": "Release",
+    "importance": 4,
+    "id": "0a82bdf4-ba02-43d8-8c8b-a34d195cc90d",
+    "artist": "DOPING PANDA",
+    "fetchedAt": "2025-11-24T02:27:14.218Z"
+  },
+  {
+    "title": "The Rose、ミネアポリス公演決定",
+    "summary": "The Roseの「Once Upon a WRLD」ツアーの一環として、2025年7月6日にミネアポリスのOrpheum Theatreで公演が予定されています。Live Nationが主催し、新しい音楽とファンとの交流を深めます。",
+    "url": "https://hennepinarts.org/events/the-rose-once-upon-a-wrld-2025",
+    "imageUrl": "",
+    "source": "hennepinarts.org",
+    "date": "2024-07-01",
+    "category": "Tour",
+    "importance": 3.5,
+    "id": "1a4c5425-7f3f-4c8b-a2fe-e4eff740e273",
+    "artist": "더로즈_The Rose",
+    "fetchedAt": "2025-11-24T02:31:01.637Z"
+  },
+  {
     "title": "The Rose、ワールドツアーとアルバム",
     "summary": "The Roseが2025年のワールドツアー「Once Upon A WRLD」を発表。最新アルバム「WRLD」を携え、ヨーロッパ、北米、南米、そしてソウルで公演。ファンとの深い繋がりを重視した内容。",
     "url": "https://www.kpop.exchange/blogs/news/the-rose-unveils-2025-world-tour-once-upon-a-wrld",
@@ -743,6 +1029,19 @@
     "id": "c422c56e-c688-47a4-81d6-fdd2db48eb81",
     "artist": "Inhaler",
     "fetchedAt": "2025-11-24T01:28:10.851Z"
+  },
+  {
+    "title": "SYNCHRONICITY'24に鬼否_GriffOが出演",
+    "summary": "鬼否_GriffOがSYNCHRONICITY'24で日本初ライブ。85組のアーティストと共演。チケットは抽選販売。",
+    "url": "https://synchronicity.tv/festival/news/240213/",
+    "imageUrl": "",
+    "source": "synchronicity.tv",
+    "date": "2024-02-13",
+    "category": "Tour",
+    "importance": 4,
+    "id": "0f6c2e89-4aed-4f02-839a-98602baeb82e",
+    "artist": "鬼否_GriffO",
+    "fetchedAt": "2025-11-24T02:32:35.412Z"
   },
   {
     "title": "1stミニアルバム『身の程を知れ』リリース",
