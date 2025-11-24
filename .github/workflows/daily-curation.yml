@@ -3,9 +3,6 @@ name: Daily Music News Curation
 on:
   schedule:
     - cron: '0 0 * * *' # 毎日 JST 9:00 (UTC 0:00) に実行
-  push:
-    branches:
-      - main # mainブランチへのプッシュでも実行
   workflow_dispatch: # 手動実行用
 
 permissions:

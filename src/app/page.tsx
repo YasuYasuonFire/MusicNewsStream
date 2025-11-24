@@ -17,8 +17,15 @@ async function getNews(): Promise<SavedNewsItem[]> {
   try {
     const raw = await fs.readFile(filePath, 'utf-8');
     const news = JSON.parse(raw) as SavedNewsItem[];
+    const toTimestamp = (item: SavedNewsItem) => {
+      const rawDate = item.date || item.fetchedAt;
+      if (!rawDate) return 0;
+      const parsed = new Date(rawDate);
+      return Number.isNaN(parsed.getTime()) ? 0 : parsed.getTime();
+    };
+
     // 新しい順にソート済みであることを期待するが、念のため
-    return news.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return news.sort((a, b) => toTimestamp(b) - toTimestamp(a));
   } catch (error) {
     console.warn('Failed to read news.json or file does not exist.', error);
     return [];
