@@ -39,13 +39,13 @@ export default async function Home() {
     <div className="min-h-screen flex flex-col">
       <Header />
       
-      <main className="flex-grow container mx-auto px-4 max-w-3xl">
+      <main className="flex-grow container mx-auto px-4 max-w-7xl py-8">
         {news.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-gray-500">まだニュースがありません。更新を待っています...</p>
           </div>
         ) : (
-          <div className="space-y-2">
+          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
             {news.map((item) => (
               <NewsCard key={item.id} item={item} />
             ))}
