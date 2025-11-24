@@ -45,6 +45,15 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          
+          # ディレクトリとファイルの存在確認（デバッグ用）
+          ls -la src/data/
+          
+          # 万が一ファイルがない場合は空のJSONを作成してエラーを回避
+          if [ ! -f src/data/news.json ]; then
+            echo "[]" > src/data/news.json
+          fi
+
           git add src/data/news.json
           # 変更がない場合はコミットしない
           git commit -m "🤖 Update music news data" || exit 0
