@@ -3,10 +3,18 @@ import { ExternalLink } from 'lucide-react';
 import { NewsItem } from '@/lib/llm';
 
 interface NewsCardProps {
-  item: NewsItem & { artist: string; id: string };
+  item: NewsItem & { artist: string; id: string; fetchedAt?: string };
 }
 
 export function NewsCard({ item }: NewsCardProps) {
+  const rawDate = item.date || item.fetchedAt || '';
+  const formattedDate = (() => {
+    if (!rawDate) return '日付不明';
+    const parsed = new Date(rawDate);
+    if (Number.isNaN(parsed.getTime())) return rawDate;
+    return format(parsed, 'yyyy-MM-dd');
+  })();
+
   return (
     <article className="group bg-white rounded-lg border border-transparent hover:border-gray-100 hover:shadow-sm transition-all duration-300 p-6 mb-8">
       <div className="flex flex-col md:flex-row md:items-start gap-6">
@@ -27,7 +35,7 @@ export function NewsCard({ item }: NewsCardProps) {
           <div className="flex items-center space-x-3 text-xs text-gray-400 uppercase tracking-wider font-medium">
             <span className="text-emerald-600 font-semibold">{item.artist}</span>
             <span>•</span>
-            <time dateTime={item.date}>{item.date}</time>
+            <time dateTime={rawDate || undefined}>{formattedDate}</time>
             <span>•</span>
             <span>{item.source}</span>
           </div>
