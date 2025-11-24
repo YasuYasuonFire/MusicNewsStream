@@ -8,6 +8,7 @@ export const NewsItemSchema = z.object({
   title: z.string().describe('日本語のキャッチーかつ簡潔なタイトル（30文字以内）。煽り文句は避ける。'),
   summary: z.string().describe('ニュースの概要を「Note」のような落ち着いたトーンの日本語で要約（100〜150文字）。'),
   url: z.string().describe('情報源のURL（検索結果から引用）。'),
+  imageUrl: z.string().optional().describe('記事のメイン画像のURL。検索結果やメタデータに画像URLが含まれている場合のみ抽出。なければnullまたは空文字。'),
   source: z.string().describe('情報源のサイト名（ドメイン名やサイト名）。'),
   date: z.string().describe('記事の日付 (YYYY-MM-DD形式)。不明な場合は今日の日付。'),
   category: z.enum(['Release', 'Tour', 'Interview', 'Media', 'Other']).describe('ニュースのカテゴリ。'),
@@ -30,7 +31,7 @@ export class NewsCurator {
 
     // 検索結果をテキスト形式に変換
     const context = searchResults.map((r, i) => 
-      `[${i+1}] Title: ${r.title}\nURL: ${r.url}\nSnippet: ${r.description}\nAge: ${r.age || 'Unknown'}`
+      `[${i+1}] Title: ${r.title}\nURL: ${r.url}\nSnippet: ${r.description}\nAge: ${r.age || 'Unknown'}\nThumbnail: ${r.thumbnail?.src || 'None'}`
     ).join('\n\n');
 
     const prompt = `

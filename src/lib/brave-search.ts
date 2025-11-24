@@ -11,6 +11,9 @@ const SearchResultSchema = z.object({
     hostname: z.string(),
     favicon: z.string().optional(),
   }).optional(),
+  thumbnail: z.object({
+    src: z.string(),
+  }).optional(),
 });
 
 const BraveResponseSchema = z.object({

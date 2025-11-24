@@ -3,6 +3,9 @@ name: Daily Music News Curation
 on:
   schedule:
     - cron: '0 0 * * *' # 毎日 JST 9:00 (UTC 0:00) に実行
+  push:
+    branches:
+      - main # mainブランチへのプッシュでも実行
   workflow_dispatch: # 手動実行用
 
 permissions:
@@ -39,6 +42,7 @@ jobs:
         env:
           BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }} # Perplexity APIキーを追加
         run: pnpm run curate
 
       - name: Commit and Push Changes

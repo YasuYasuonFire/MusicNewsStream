@@ -1,14 +1,21 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { BraveSearchClient } from '../src/lib/brave-search';
+import { PerplexityClient } from '../src/lib/perplexity';
 import { NewsCurator, type NewsItem } from '../src/lib/llm';
 
 // 環境変数チェック
 const BRAVE_API_KEY = process.env.BRAVE_SEARCH_API_KEY;
 const GOOGLE_API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+const PERPLEXITY_API_KEY = process.env.PERPLEXITY_API_KEY;
 
-if (!BRAVE_API_KEY || !GOOGLE_API_KEY) {
-  console.error('Error: BRAVE_SEARCH_API_KEY and GOOGLE_GENERATIVE_AI_API_KEY are required.');
+if (!GOOGLE_API_KEY) {
+  console.error('Error: GOOGLE_GENERATIVE_AI_API_KEY is required.');
+  process.exit(1);
+}
+
+if (!BRAVE_API_KEY && !PERPLEXITY_API_KEY) {
+  console.error('Error: At least one of BRAVE_SEARCH_API_KEY or PERPLEXITY_API_KEY is required.');
   process.exit(1);
 }
 
@@ -39,7 +46,8 @@ async function main() {
     console.log('✨ No existing news file found. Creating new one.');
   }
 
-  const searchClient = new BraveSearchClient(BRAVE_API_KEY as string);
+  const braveClient = BRAVE_API_KEY ? new BraveSearchClient(BRAVE_API_KEY) : null;
+  const perplexityClient = PERPLEXITY_API_KEY ? new PerplexityClient(PERPLEXITY_API_KEY) : null;
   const curator = new NewsCurator();
   const newItems: SavedNewsItem[] = [];
 
@@ -47,16 +55,28 @@ async function main() {
   for (const artist of artists) {
     console.log(`\n🔍 Searching for: ${artist}`);
     
-    // 検索クエリの工夫: "Artist Name news music" など
-    const query = `"${artist}" news music release tour interview`;
-    const searchResults = await searchClient.search(query, 20);
-    console.log(`   Found ${searchResults.length} search results.`);
+    let searchResults: any[] = [];
+
+    // Brave Search
+    if (braveClient) {
+      const query = `"${artist}" news music release tour interview`;
+      const braveResults = await braveClient.search(query, 20);
+      console.log(`   [Brave] Found ${braveResults.length} results.`);
+      searchResults = [...searchResults, ...braveResults];
+    }
+
+    // Perplexity Search
+    if (perplexityClient) {
+      const query = `Latest music news about ${artist} (release, tour, interview) in this week.`;
+      const perplexityResults = await perplexityClient.search(query);
+      console.log(`   [Perplexity] Found response + ${perplexityResults.length - 1} citations.`);
+      searchResults = [...searchResults, ...perplexityResults];
+    }
 
     if (searchResults.length === 0) continue;
 
     // LLMによるキュレーション
-    console.log(`   🤖 Curating with AI...`);
-    const curatedNews = await curator.curate(artist, searchResults);
+    console.log(`   🤖 Curating with AI...`);    const curatedNews = await curator.curate(artist, searchResults);
     console.log(`   ✅ Extracted ${curatedNews.length} relevant news items.`);
 
     for (const item of curatedNews) {
