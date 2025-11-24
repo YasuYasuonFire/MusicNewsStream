@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Image as ImageIcon } from 'lucide-react';
 import { NewsItem } from '@/lib/llm';
 
 interface NewsCardProps {
@@ -9,62 +9,67 @@ interface NewsCardProps {
 export function NewsCard({ item }: NewsCardProps) {
   const rawDate = item.date || item.fetchedAt || '';
   const formattedDate = (() => {
-    if (!rawDate) return '日付不明';
+    if (!rawDate) return '';
     const parsed = new Date(rawDate);
     if (Number.isNaN(parsed.getTime())) return rawDate;
     return format(parsed, 'yyyy-MM-dd');
   })();
 
   return (
-    <article className="group bg-white rounded-lg border border-transparent hover:border-gray-100 hover:shadow-sm transition-all duration-300 p-6 mb-8">
-      <div className="flex flex-col md:flex-row md:items-start gap-6">
-        {/* Thumbnail (if exists) */}
-        {item.imageUrl && (
-          <div className="w-full md:w-48 flex-shrink-0 aspect-video md:aspect-square relative rounded-md overflow-hidden bg-gray-50">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-              src={item.imageUrl} 
+    <article className="break-inside-avoid mb-4 group bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+      <a href={item.url} target="_blank" rel="noopener noreferrer" className="block">
+        {/* Image Section */}
+        <div className="relative w-full bg-gray-100">
+          {item.imageUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={item.imageUrl}
               alt={item.title}
-              className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-auto object-cover block"
+              loading="lazy"
             />
+          ) : (
+            <div className="w-full aspect-[4/3] flex items-center justify-center text-gray-300 bg-gray-50">
+              <ImageIcon className="w-12 h-12" />
+            </div>
+          )}
+          
+          {/* Overlay Category Label */}
+          <div className="absolute top-2 left-2">
+            <span className="inline-block px-2 py-1 text-xs font-bold text-white bg-black/50 backdrop-blur-sm rounded-full">
+              {item.category}
+            </span>
           </div>
-        )}
+        </div>
 
-        <div className="flex-1 flex flex-col space-y-3">
-          {/* Meta Info */}
-          <div className="flex items-center space-x-3 text-xs text-gray-400 uppercase tracking-wider font-medium">
-            <span className="text-emerald-600 font-semibold">{item.artist}</span>
-            <span>•</span>
-            <time dateTime={rawDate || undefined}>{formattedDate}</time>
-            <span>•</span>
-            <span>{item.source}</span>
+        {/* Content Section */}
+        <div className="p-4">
+          {/* Header: Date & Source */}
+          <div className="flex justify-between items-center text-xs text-gray-400 mb-2">
+            <span>{formattedDate}</span>
+            <span className="flex items-center gap-1">
+              {item.source}
+            </span>
           </div>
 
           {/* Title */}
-          <h2 className="text-xl font-bold text-gray-900 leading-snug group-hover:text-emerald-700 transition-colors">
-            <a href={item.url} target="_blank" rel="noopener noreferrer" className="block">
-              {item.title}
-            </a>
+          <h2 className="text-sm md:text-base font-bold text-gray-900 leading-tight mb-2 group-hover:text-emerald-600 transition-colors line-clamp-3">
+            {item.title}
           </h2>
 
-          {/* Summary */}
-          <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+          {/* Artist Tag */}
+          <div className="flex items-center mt-2">
+             <span className="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-1 rounded-md">
+              {item.artist}
+            </span>
+          </div>
+
+          {/* Summary (Show on hover or always?) - Pinterest usually hides summary or keeps it short. Let's keep it hidden or very short. */}
+          <p className="text-xs text-gray-500 mt-2 line-clamp-3 leading-relaxed">
             {item.summary}
           </p>
-
-          {/* Footer / Link */}
-          <div className="pt-2">
-            <a 
-              href={item.url} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center text-sm text-gray-400 hover:text-gray-900 transition-colors font-medium"
-            >
-              Read more <ExternalLink className="ml-1 h-3 w-3" />
-            </a>
-          </div>
         </div>
-      </div>
+      </a>
     </article>
   );
 }

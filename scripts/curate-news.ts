@@ -37,14 +37,10 @@ async function main() {
   const artists: string[] = JSON.parse(artistsRaw);
   console.log(`📋 Found ${artists.length} artists: ${artists.join(', ')}`);
 
-  // 2. 既存ニュースの読み込み
+  // 2. ニュースリストの初期化（毎回クリア）
   let existingNews: SavedNewsItem[] = [];
-  try {
-    const newsRaw = await fs.readFile(NEWS_FILE, 'utf-8');
-    existingNews = JSON.parse(newsRaw);
-  } catch (error) {
-    console.log('✨ No existing news file found. Creating new one.');
-  }
+  // 要望により、毎回news.jsonをクリアするため、既存ファイルの読み込みは行わない
+  console.log('✨ Clearing previous news data. Starting fresh.');
 
   const braveClient = BRAVE_API_KEY ? new BraveSearchClient(BRAVE_API_KEY) : null;
   const perplexityClient = PERPLEXITY_API_KEY ? new PerplexityClient(PERPLEXITY_API_KEY) : null;
@@ -83,8 +79,24 @@ async function main() {
       // 重複チェック (URL)
       const isDuplicate = existingNews.some(n => n.url === item.url) || newItems.some(n => n.url === item.url);
       if (!isDuplicate) {
+        let finalImageUrl = item.imageUrl;
+        
+        // 画像がない場合、AIで生成
+        if (!finalImageUrl || finalImageUrl.trim() === '') {
+          console.log(`      🎨 Generating thumbnail for: ${item.title}`);
+          try {
+            const generatedImage = await curator.generateImage(item);
+            if (generatedImage) {
+              finalImageUrl = generatedImage;
+            }
+          } catch (err) {
+            console.error('      Failed to generate image, skipping image generation.');
+          }
+        }
+
         newItems.push({
           ...item,
+          imageUrl: finalImageUrl,
           id: crypto.randomUUID(),
           artist,
           fetchedAt: new Date().toISOString(),

@@ -67,5 +67,41 @@ ${context}
       return [];
     }
   }
+
+  async generateImage(newsItem: NewsItem): Promise<string | null> {
+    const prompt = `
+    以下のニュース記事のために、魅力的でアーティスティックなサムネイル画像をSVGコードとして生成してください。
+    
+    タイトル: ${newsItem.title}
+    概要: ${newsItem.summary}
+    アーティスト: ${newsItem.category === 'Release' || newsItem.category === 'Tour' ? '関連する音楽的な要素を含めてください' : '抽象的なイメージ'}
+
+    ## 要件
+    - SVGコードのみを出力してください。マークダウンのコードブロック(\`\`\`xmlなど)は不要です。
+    - アスペクト比は 16:9 または 1:1 に適したデザインにしてください（viewBox="0 0 800 600" など）。
+    - 抽象的でモダンなデザイン、幾何学模様、または音楽を感じさせるミニマルなイラストが良いです。
+    - テキストは含めないでください（タイトルなどは不要）。
+    - 配色は目に優しく、かつ印象的なものにしてください。
+    - 複雑すぎるとエラーになる可能性があるため、パスやシェイプは適度にシンプルにしてください。
+    `;
+
+    try {
+      const result = await generateObject({
+        model: this.model,
+        schema: z.object({
+          svg: z.string().describe('生成されたSVGコード'),
+        }),
+        prompt: prompt,
+      });
+
+      const svg = result.object.svg;
+      // SVGをData URLに変換
+      const base64Svg = Buffer.from(svg).toString('base64');
+      return `data:image/svg+xml;base64,${base64Svg}`;
+    } catch (error) {
+      console.error('Failed to generate SVG image:', error);
+      return null;
+    }
+  }
 }
 
