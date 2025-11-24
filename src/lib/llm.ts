@@ -21,7 +21,7 @@ const CurationResultSchema = z.object({
 });
 
 export class NewsCurator {
-  private model = google('gemini-1.5-flash');
+  private model = google('gemini-2.0-flash');
 
   constructor() {}
 
