@@ -1,2 +1,74 @@
-[]
-
+[
+  {
+    "title": "UMGのDowntown買収にEUが警告か",
+    "summary": "ユニバーサルミュージックグループによるDowntownの775億円での買収に対し、EUが正式な警告を発する見込み。独立系音楽団体IMPALAが反対を主導。",
+    "url": "https://www.musicbusinessworldwide.com/eu-to-issue-formal-warning-over-umgs-775m-downtown-acquisition/",
+    "source": "Music Business Worldwide",
+    "date": "2025-11-21",
+    "category": "Other",
+    "importance": 4,
+    "id": "1ce0ca80-557e-4317-8cbf-7dafaf5ce731",
+    "artist": "downt",
+    "fetchedAt": "2025-11-24T01:27:57.788Z"
+  },
+  {
+    "title": "UMGのDowntown買収にEUが異議申し立てか",
+    "summary": "ユニバーサルミュージックグループ(UMG)によるDowntownの買収に対し、EUが異議を唱える可能性。独立系音楽セクターへの影響が懸念されている。",
+    "url": "https://routenote.com/blog/eu-expected-to-challenge-umgs-775m-downtown-takeover/",
+    "source": "RouteNote Blog",
+    "date": "2025-11-21",
+    "category": "Other",
+    "importance": 4,
+    "id": "2262d0ff-b9c7-40c9-9e6b-71cba240c70f",
+    "artist": "downt",
+    "fetchedAt": "2025-11-24T01:27:57.788Z"
+  },
+  {
+    "title": "BUMP OF CHICKEN、新曲「I」MVプレミア公開",
+    "summary": "BUMP OF CHICKENの新曲「I」のミュージックビデオが11月21日20時よりYouTubeでプレミア公開。CDシングルとライブBDの購入特典絵柄も解禁。",
+    "url": "https://tvfan.kyodo.co.jp/music/news-music/1494370",
+    "source": "tvfan.kyodo.co.jp",
+    "date": "2024-11-23",
+    "category": "Media",
+    "importance": 4,
+    "id": "e2bb6f1c-3052-4697-96ac-d2ecbcb8aae4",
+    "artist": "BUMP OF CHICKEN",
+    "fetchedAt": "2025-11-24T01:28:06.938Z"
+  },
+  {
+    "title": "RADWIMPS対バンライブにBUMP OF CHICKEN出演",
+    "summary": "RADWIMPS 20周年記念ライブツアー横浜アリーナ公演にBUMP OF CHICKENがゲスト出演。「同じドアをくぐれたら」をサプライズ披露。",
+    "url": "https://release55.com/set-list/j-pop-setori/radwimps-20th-tour-1122/",
+    "source": "release55.com",
+    "date": "2024-11-23",
+    "category": "Tour",
+    "importance": 3,
+    "id": "9a13cfc9-6d87-4520-9759-65df59ed911f",
+    "artist": "BUMP OF CHICKEN",
+    "fetchedAt": "2025-11-24T01:28:06.938Z"
+  },
+  {
+    "title": "BUMP OF CHICKEN「I」MVプレミア公開決定",
+    "summary": "BUMP OF CHICKEN、『ヒロアカ』エンディングテーマ「I」のMVがプレミア公開。12月10日にはライブ映像作品も発売。購入特典も明らかに。",
+    "url": "https://www.oricon.co.jp/news/2419940/full/",
+    "source": "ORICON NEWS",
+    "date": "2024-11-23",
+    "category": "Media",
+    "importance": 4,
+    "id": "5e308438-3b63-47da-8bea-51159376324f",
+    "artist": "BUMP OF CHICKEN",
+    "fetchedAt": "2025-11-24T01:28:06.938Z"
+  },
+  {
+    "title": "Inhaler、新シングル「Hole In The Ground」リリース",
+    "summary": "Inhalerが3枚目のスタジオアルバム「Open Wide」に続き、新シングル「Hole In The Ground」をリリース。UKツアーの締めくくりとなるロイヤル・アルバート・ホールでのパフォーマンス直前に発表されました。",
+    "url": "https://www.redbrick.me/single-review-inhaler-hole-in-the-ground/",
+    "source": "Redbrick Music",
+    "date": "2024-05-03",
+    "category": "Release",
+    "importance": 4,
+    "id": "c422c56e-c688-47a4-81d6-fdd2db48eb81",
+    "artist": "Inhaler",
+    "fetchedAt": "2025-11-24T01:28:10.851Z"
+  }
+]
