@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { BraveSearchClient } from '../src/lib/brave-search';
+import { BraveSearchClient, type SearchResult } from '../src/lib/brave-search';
 import { PerplexityClient } from '../src/lib/perplexity';
 import { NewsCurator, type NewsItem } from '../src/lib/llm';
 
@@ -38,7 +38,7 @@ async function main() {
   console.log(`📋 Found ${artists.length} artists: ${artists.join(', ')}`);
 
   // 2. ニュースリストの初期化（毎回クリア）
-  let existingNews: SavedNewsItem[] = [];
+  const existingNews: SavedNewsItem[] = [];
   // 要望により、毎回news.jsonをクリアするため、既存ファイルの読み込みは行わない
   console.log('✨ Clearing previous news data. Starting fresh.');
 
@@ -51,7 +51,7 @@ async function main() {
   for (const artist of artists) {
     console.log(`\n🔍 Searching for: ${artist}`);
     
-    let searchResults: any[] = [];
+    let searchResults: SearchResult[] = [];
 
     // Brave Search
     if (braveClient) {
@@ -89,7 +89,7 @@ async function main() {
             if (generatedImage) {
               finalImageUrl = generatedImage;
             }
-          } catch (err) {
+          } catch {
             console.error('      Failed to generate image, skipping image generation.');
           }
         }
