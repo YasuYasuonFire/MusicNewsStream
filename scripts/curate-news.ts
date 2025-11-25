@@ -31,6 +31,7 @@ interface SavedNewsItem extends NewsItem {
 
 async function main() {
   console.log('🚀 Starting Music News Curation...');
+  console.log('📰 Enhanced search: Using Japanese + English keywords for comprehensive coverage');
 
   // 1. アーティストリストの読み込み
   const artistsRaw = await fs.readFile(ARTISTS_FILE, 'utf-8');
@@ -53,18 +54,23 @@ async function main() {
     
     let searchResults: SearchResult[] = [];
 
-    // Brave Search
+    // Brave Search - 音楽ニュース専用メソッドを使用（日本語・英語両方のキーワードで検索）
     if (braveClient) {
-      const query = `"${artist}" news music release tour interview`;
-      const braveResults = await braveClient.search(query, 20);
+      console.log(`   [Brave] Searching with Japanese + English keywords...`);
+      const braveResults = await braveClient.searchMusicNews(artist, {
+        count: 20,
+        freshness: 'pw', // 過去1週間
+      });
       console.log(`   [Brave] Found ${braveResults.length} results.`);
       searchResults = [...searchResults, ...braveResults];
     }
 
-    // Perplexity Search
+    // Perplexity Search - 日本語対応強化版プロンプトを使用
     if (perplexityClient) {
-      const query = `Latest music news about ${artist} (release, tour, interview) in this week.`;
-      const perplexityResults = await perplexityClient.search(query);
+      console.log(`   [Perplexity] Searching with enhanced Japanese prompt...`);
+      const perplexityResults = await perplexityClient.searchMusicNews(artist, {
+        language: 'both', // 日本語・英語両方の情報を取得
+      });
       console.log(`   [Perplexity] Found response + ${perplexityResults.length - 1} citations.`);
       searchResults = [...searchResults, ...perplexityResults];
     }
