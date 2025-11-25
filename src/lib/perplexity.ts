@@ -26,13 +26,12 @@ export class PerplexityClient {
             content: query
           }
         ],
-        // @ts-ignore - Perplexity specific options
+        // @ts-expect-error - Perplexity specific options
         return_citations: true,
       });
 
       const content = response.choices[0]?.message?.content || '';
-      // @ts-ignore - Perplexity specific response structure
-      const citations = response.citations || [];
+      const citations = (response as unknown as { citations?: string[] }).citations || [];
 
       // Perplexityの回答自体を一つの「検索結果」として扱い、
       // 引用元URLも別個の検索結果としてリストアップする

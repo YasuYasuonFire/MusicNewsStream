@@ -1,7 +1,24 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP } from "next/font/google";
+import { Inter, Bebas_Neue, Oswald, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-bebas-neue",
+});
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-oswald",
+});
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
@@ -10,8 +27,14 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: "Music News Stream",
-  description: "AI-curated music news for your favorite artists.",
+  title: "NOISE | Alternative Rock News",
+  description: "Your daily dose of alternative rock news, reviews, and interviews. Stay ahead with the latest from Radiohead, Arctic Monkeys, The Strokes, and more.",
+  keywords: ["alternative rock", "indie rock", "music news", "rock news", "radiohead", "arctic monkeys"],
+  openGraph: {
+    title: "NOISE | Alternative Rock News",
+    description: "Your daily dose of alternative rock news",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -20,13 +43,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html lang="ja" className="dark">
       <body
         className={cn(
-          "min-h-screen bg-[#FAFAFA] font-sans antialiased text-gray-900",
+          "min-h-screen antialiased",
+          inter.variable,
+          bebasNeue.variable,
+          oswald.variable,
           notoSansJP.variable
         )}
       >
+        {/* Noise Overlay for texture */}
+        <div className="noise-overlay" aria-hidden="true" />
         {children}
       </body>
     </html>
