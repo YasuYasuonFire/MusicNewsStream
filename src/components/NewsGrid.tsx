@@ -15,7 +15,7 @@ interface SavedNewsItem {
   imageUrl?: string;
   source: string;
   date: string;
-  category: string;
+  category: 'Release' | 'Tour' | 'Interview' | 'Media' | 'Other';
   importance: number;
   artist: string;
   fetchedAt: string;
