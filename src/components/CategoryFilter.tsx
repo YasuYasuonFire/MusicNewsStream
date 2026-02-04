@@ -5,19 +5,23 @@ import { Filter, X } from 'lucide-react';
 
 interface CategoryFilterProps {
   categories: string[];
-  artists: string[];
+  selectedCategory: string | null;
+  onCategoryChange: (category: string | null) => void;
 }
 
-export function CategoryFilter({ categories, artists }: CategoryFilterProps) {
+export function CategoryFilter({
+  categories,
+  selectedCategory,
+  onCategoryChange
+}: CategoryFilterProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   return (
     <div className="relative">
       {/* Desktop Filters */}
       <div className="hidden md:flex items-center gap-2">
         <button
-          onClick={() => setSelectedCategory(null)}
+          onClick={() => onCategoryChange(null)}
           className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
             selectedCategory === null
               ? 'bg-[#ff3c38] text-white'
@@ -29,7 +33,7 @@ export function CategoryFilter({ categories, artists }: CategoryFilterProps) {
         {categories.slice(0, 5).map((category) => (
           <button
             key={category}
-            onClick={() => setSelectedCategory(category)}
+            onClick={() => onCategoryChange(category)}
             className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
               selectedCategory === category
                 ? 'bg-[#ff3c38] text-white'
@@ -73,7 +77,7 @@ export function CategoryFilter({ categories, artists }: CategoryFilterProps) {
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => {
-                    setSelectedCategory(null);
+                    onCategoryChange(null);
                     setIsOpen(false);
                   }}
                   className={`px-4 py-2 text-sm font-medium transition-all ${
@@ -88,7 +92,7 @@ export function CategoryFilter({ categories, artists }: CategoryFilterProps) {
                   <button
                     key={category}
                     onClick={() => {
-                      setSelectedCategory(category);
+                      onCategoryChange(category);
                       setIsOpen(false);
                     }}
                     className={`px-4 py-2 text-sm font-medium transition-all ${
@@ -102,22 +106,6 @@ export function CategoryFilter({ categories, artists }: CategoryFilterProps) {
                 ))}
               </div>
             </div>
-
-            {artists.length > 0 && (
-              <div>
-                <h4 className="text-[#808080] text-xs uppercase tracking-wider mb-3">アーティスト</h4>
-                <div className="flex flex-wrap gap-2">
-                  {artists.map((artist) => (
-                    <span
-                      key={artist}
-                      className="px-3 py-1 bg-[#1a1a1a] text-white/70 text-sm"
-                    >
-                      {artist}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         </div>
       )}
