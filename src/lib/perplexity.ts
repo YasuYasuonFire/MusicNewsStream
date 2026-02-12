@@ -1,5 +1,6 @@
 import { OpenAI } from 'openai';
 import type { SearchResult } from './brave-search';
+import type { ArtistConfig } from '../types/artist';
 
 // 検索オプション
 export interface PerplexitySearchOptions {
@@ -26,8 +27,9 @@ const SYSTEM_PROMPT_MUSIC_JA = `あなたは音楽ニュースに特化した情
 - メンバーの活動情報
 
 ## 回答形式
-- 各ニュースは**日付**と**出典**を明確に記載してください
-- 最新の情報を優先して報告してください
+- 各ニュースの正確な公開日をYYYY-MM-DD形式で必ず記載してください
+- 1週間以上前のニュースは含めないでください
+- 公開日が不明な場合は「日付不明」と記載してください
 - 必ず引用元URLを含めてください
 - 回答は日本語で行ってください`;
 
@@ -47,8 +49,9 @@ const SYSTEM_PROMPT_MUSIC_EN = `You are a music news research assistant.
 - Band member activities
 
 ## Response Format
-- Include the date and source for each news item
-- Prioritize the most recent information
+- Include the exact publication date in YYYY-MM-DD format for each news item
+- Do not include news older than 1 week
+- If the date is unknown, write "date unknown"
 - Always include citation URLs
 - Respond in English`;
 
@@ -69,8 +72,9 @@ const SYSTEM_PROMPT_MUSIC_BOTH = `あなたは音楽ニュースに特化した�
 - メンバーの個人活動・サイドプロジェクト
 
 ## 回答形式
-- 各ニュースには**日付**と**出典名**を必ず記載してください
-- 最新の情報（直近1週間以内）を優先して報告してください
+- 各ニュースの正確な公開日をYYYY-MM-DD形式で必ず記載してください
+- 1週間以上前のニュースは含めないでください
+- 公開日が不明な場合は「日付不明」と記載してください
 - 必ず引用元URLを含めてください
 - ニュースが見つからない場合は、その旨を正直に報告してください
 - 回答は日本語で行ってください（ソースが英語でも要約は日本語で）`;
@@ -91,7 +95,7 @@ export class PerplexityClient {
    */
   private getSystemPrompt(options: PerplexitySearchOptions): string {
     const { language = 'both', category = 'music' } = options;
-    
+
     if (category === 'general') {
       return 'あなたは情報収集アシスタントです。最新のニュースを検索し、日本語で要約してください。必ず引用元URLを含めてください。';
     }
@@ -108,24 +112,48 @@ export class PerplexityClient {
   }
 
   /**
-   * アーティスト名に応じた検索クエリを生成
+   * アーティスト情報に応じた検索クエリを生成
    */
-  private buildMusicNewsQuery(artistName: string, language: 'ja' | 'en' | 'both' = 'both'): string {
+  private buildMusicNewsQuery(artist: ArtistConfig, language: 'ja' | 'en' | 'both' = 'both'): string {
+    const names = [artist.name, artist.nameJa, ...artist.aliases]
+      .filter((v, i, arr) => arr.indexOf(v) === i) // 重複除去
+      .join('、');
+    const disambig = artist.disambiguation ? `（${artist.disambiguation}）` : '';
+
     if (language === 'ja') {
-      return `「${artistName}」の最新音楽ニュースを教えてください。新曲リリース、ツアー、ライブ、インタビュー、メディア出演などの情報を、日本語メディアを中心に検索してください。`;
+      return `「${names}」${disambig}の最新音楽ニュースを教えてください。新曲リリース、ツアー、ライブ、インタビュー、メディア出演などの情報を、日本語メディアを中心に検索してください。`;
     } else if (language === 'en') {
-      return `Find the latest music news about "${artistName}". Include new releases, tours, interviews, and media appearances from the past week.`;
+      return `Find the latest music news about "${artist.name}"${disambig}. Include new releases, tours, interviews, and media appearances from the past week.`;
     } else {
-      return `「${artistName}」の最新音楽ニュースを網羅的に教えてください。
+      return `「${names}」${disambig}の最新音楽ニュースを網羅的に教えてください。
 
 検索してほしい内容：
 - 新曲・新アルバムのリリース情報
-- ツアー・ライブ・フェス出演情報  
+- ツアー・ライブ・フェス出演情報
 - インタビュー・メディア出演
 - コラボレーション・新プロジェクト
 
 日本語メディア（音楽ナタリー、BARKS、オリコン等）と海外メディア（Pitchfork、NME等）の両方から、直近1週間の最新情報を探してください。`;
     }
+  }
+
+  /**
+   * Perplexityのレスポンスから引用番号周辺のコンテキストを抽出
+   */
+  private extractCitationContext(content: string, citations: string[]): Map<number, string> {
+    const contextMap = new Map<number, string>();
+    for (let i = 0; i < citations.length; i++) {
+      const marker = `[${i + 1}]`;
+      const idx = content.indexOf(marker);
+      if (idx !== -1) {
+        // マーカー周辺の文を抽出
+        const sentenceStart = Math.max(0, content.lastIndexOf('。', idx - 1) + 1);
+        const sentenceEnd = content.indexOf('。', idx);
+        const end = sentenceEnd !== -1 ? sentenceEnd + 1 : Math.min(content.length, idx + 200);
+        contextMap.set(i, content.slice(sentenceStart, end).trim());
+      }
+    }
+    return contextMap;
   }
 
   /**
@@ -153,6 +181,7 @@ export class PerplexityClient {
 
       const content = response.choices[0]?.message?.content || '';
       const citations = (response as unknown as { citations?: string[] }).citations || [];
+      const citationContext = this.extractCitationContext(content, citations);
 
       // Perplexityの回答自体を一つの「検索結果」として扱い、
       // 引用元URLも別個の検索結果としてリストアップする
@@ -166,13 +195,14 @@ export class PerplexityClient {
         }
       ];
 
-      // 引用元URLも検索結果として追加（内容までは取れないのでURLのみ）
+      // 引用元URLも検索結果として追加（コンテキスト付き）
       citations.forEach((url: string, index: number) => {
         try {
+          const context = citationContext.get(index);
           results.push({
             title: `Source [${index + 1}] from Perplexity`,
             url: url,
-            description: `Cited source for query: ${query}`,
+            description: context || `Cited source for query: ${query}`,
             age: 'Unknown',
             meta_url: { hostname: new URL(url).hostname }
           });
@@ -191,16 +221,15 @@ export class PerplexityClient {
 
   /**
    * 音楽ニュース専用の検索メソッド
-   * 日本語対応の強化されたプロンプトを使用
+   * ArtistConfigを使い、日本語名・エイリアスを含む強化されたプロンプトを使用
    */
-  async searchMusicNews(artistName: string, options: PerplexitySearchOptions = {}): Promise<SearchResult[]> {
+  async searchMusicNews(artist: ArtistConfig, options: PerplexitySearchOptions = {}): Promise<SearchResult[]> {
     const { language = 'both' } = options;
-    const query = this.buildMusicNewsQuery(artistName, language);
-    
+    const query = this.buildMusicNewsQuery(artist, language);
+
     return this.search(query, {
       ...options,
       category: 'music',
     });
   }
 }
-

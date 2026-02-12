@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import type { ArtistConfig } from '../types/artist';
 
 // Brave Search API Response Schema (Partial)
 const SearchResultSchema = z.object({
@@ -46,6 +47,27 @@ const NEWS_KEYWORDS_JA = ['ニュース', '最新', '速報', '情報'];
 const MUSIC_NEWS_KEYWORDS_EN = ['release', 'tour', 'interview', 'album', 'concert'];
 const MUSIC_NEWS_KEYWORDS_JA = ['リリース', 'ツアー', 'インタビュー', 'アルバム', 'ライブ', '新曲'];
 
+// ブロックするドメイン
+const BLOCKED_DOMAINS = new Set([
+  'wikipedia.org',
+  'en.wikipedia.org',
+  'ja.wikipedia.org',
+  'genius.com',
+  'azlyrics.com',
+  'songlyrics.com',
+  'utamap.com',
+  'uta-net.com',
+  'j-lyric.net',
+  'ticketcamp.net',
+  'viagogo.com',
+  'stubhub.com',
+  'ad-hoc-news.de',
+  'discogs.com',
+  'allmusic.com',
+  'last.fm',
+  'rateyourmusic.com',
+]);
+
 export class BraveSearchClient {
   private apiKey: string;
   private baseUrl = 'https://api.search.brave.com/res/v1/web/search';
@@ -61,18 +83,30 @@ export class BraveSearchClient {
     let query = baseQuery;
 
     if (options.appendNewsKeywords) {
-      // 英語ニュースキーワードを追加
       const newsKeyword = NEWS_KEYWORDS_EN[0];
       query = `${query} ${newsKeyword}`;
     }
 
     if (options.appendJapaneseKeywords) {
-      // 日本語ニュースキーワードを追加
       const japaneseKeywords = NEWS_KEYWORDS_JA.slice(0, 2).join(' ');
       query = `${query} ${japaneseKeywords}`;
     }
 
     return query;
+  }
+
+  /**
+   * ブロックリストに含まれるドメインの結果を除外
+   */
+  private filterBlockedDomains(results: SearchResult[]): SearchResult[] {
+    return results.filter(r => {
+      const hostname = r.meta_url?.hostname || '';
+      const isBlocked = Array.from(BLOCKED_DOMAINS).some(domain => hostname.endsWith(domain));
+      if (isBlocked) {
+        console.log(`      [Brave] Blocked domain: ${hostname} (${r.title})`);
+      }
+      return !isBlocked;
+    });
   }
 
   /**
@@ -97,7 +131,7 @@ export class BraveSearchClient {
     url.searchParams.append('freshness', freshness);
     url.searchParams.append('text_decorations', '0');
     url.searchParams.append('result_filter', 'web');
-    
+
     // 言語・国の指定
     if (language) {
       url.searchParams.append('search_lang', language);
@@ -121,7 +155,7 @@ export class BraveSearchClient {
 
       const json = await response.json();
       const parsed = BraveResponseSchema.parse(json);
-      
+
       return parsed.web?.results || [];
     } catch (error) {
       console.error('Failed to fetch from Brave Search:', error);
@@ -131,29 +165,39 @@ export class BraveSearchClient {
 
   /**
    * 音楽ニュース専用の検索メソッド
-   * 日本語と英語の両方のキーワードで網羅的に検索
+   * ArtistConfigを使い、日本語名・エイリアス・除外ワードを活用して精度向上
    */
-  async searchMusicNews(artistName: string, options: Omit<BraveSearchOptions, 'appendNewsKeywords' | 'appendJapaneseKeywords'> = {}): Promise<SearchResult[]> {
-    const { count = 20, freshness = 'pw' } = options;
+  async searchMusicNews(artist: ArtistConfig, options: Omit<BraveSearchOptions, 'appendNewsKeywords' | 'appendJapaneseKeywords'> = {}): Promise<SearchResult[]> {
+    const { count = 30, freshness = 'pw' } = options;
     const allResults: SearchResult[] = [];
     const seenUrls = new Set<string>();
 
-    // 検索クエリのバリエーションを作成
+    const excludeTerms = artist.searchHints.excludeTerms.join(' ');
+
+    // 検索クエリのバリエーション
     const queries = [
-      // 英語クエリ（国際的なニュース用）
-      `"${artistName}" ${NEWS_KEYWORDS_EN.slice(0, 2).join(' ')} ${MUSIC_NEWS_KEYWORDS_EN.slice(0, 3).join(' ')}`,
-      // 日本語クエリ（日本のニュース用）
-      `"${artistName}" ${NEWS_KEYWORDS_JA.slice(0, 2).join(' ')} ${MUSIC_NEWS_KEYWORDS_JA.slice(0, 3).join(' ')}`,
+      // 英語名 + 英語ニュースキーワード
+      `"${artist.name}" ${NEWS_KEYWORDS_EN.slice(0, 2).join(' ')} ${MUSIC_NEWS_KEYWORDS_EN.slice(0, 3).join(' ')} ${excludeTerms}`.trim(),
+      // 英語名 + 日本語ニュースキーワード
+      `"${artist.name}" ${NEWS_KEYWORDS_JA.slice(0, 2).join(' ')} ${MUSIC_NEWS_KEYWORDS_JA.slice(0, 3).join(' ')} ${excludeTerms}`.trim(),
+      // 日本語名でのクエリ（曖昧性回避に有効）
+      `"${artist.nameJa}" 最新ニュース`,
       // シンプルな最新ニュースクエリ
-      `"${artistName}" 最新ニュース`,
-      `"${artistName}" latest news`,
+      `"${artist.name}" latest news`,
+      // エイリアスを使ったクエリ
+      ...artist.aliases
+        .filter(a => a !== artist.name && a !== artist.nameJa)
+        .slice(0, 1)
+        .map(alias => `"${alias}" 音楽 ニュース`),
     ];
+
+    const perQueryCount = Math.max(8, Math.ceil(count / queries.length));
 
     // 各クエリで検索を実行（重複を除去しながら結果を集約）
     for (const query of queries) {
       try {
         const results = await this.search(query, {
-          count: Math.ceil(count / queries.length),
+          count: perQueryCount,
           freshness,
           ...options,
         });
@@ -172,7 +216,7 @@ export class BraveSearchClient {
       }
     }
 
-    return allResults.slice(0, count);
+    // ブロックドメインを除外して返す
+    return this.filterBlockedDomains(allResults).slice(0, count);
   }
 }
-
