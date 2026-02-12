@@ -1,6 +1,40 @@
 [
-    "cinema staff",
-    "radiohead",
-    "mr.children"
+  {
+    "name": "cinema staff",
+    "nameJa": "シネマスタッフ",
+    "aliases": ["シネマスタッフ"],
+    "genre": "japanese rock",
+    "disambiguation": "日本のロックバンド",
+    "mediaPages": {
+      "natalie": "/music/artist/5830"
+    },
+    "searchHints": {
+      "excludeTerms": ["-映画", "-movie", "-theater", "-hiring", "-求人"]
+    }
+  },
+  {
+    "name": "radiohead",
+    "nameJa": "レディオヘッド",
+    "aliases": ["レディオヘッド"],
+    "genre": "alternative rock",
+    "disambiguation": null,
+    "mediaPages": {},
+    "searchHints": {
+      "excludeTerms": []
+    }
+  },
+  {
+    "name": "mr.children",
+    "nameJa": "ミスチル",
+    "aliases": ["ミスチル", "ミスターチルドレン"],
+    "genre": "j-pop rock",
+    "disambiguation": null,
+    "mediaPages": {
+      "natalie": "/music/artist/273",
+      "barks": "/artist/496706/"
+    },
+    "searchHints": {
+      "excludeTerms": []
+    }
+  }
 ]
-  
